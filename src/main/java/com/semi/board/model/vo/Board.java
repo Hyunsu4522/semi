@@ -10,7 +10,8 @@ public class Board {
 	private int count;
 	private String status;
 	private String saleYn;
-	private int amount;
+	private String buyer;
+	private String saleYn;
 	private String titleImg;
 	private String address;
 	
@@ -33,6 +34,39 @@ public class Board {
 
 	public Board() {}
 	
+	public String getBuyer() {
+		return buyer;
+	}
+
+	public void setBuyer(String buyer) {
+		this.buyer = buyer;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public Board(int boardNo, String boardTitle, String boardContent, String boardWriter, String createDate, int count,
+			String status, int amount, String buyer, String saleYn, String titleImg, String address) {
+		super();
+		this.boardNo = boardNo;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.boardWriter = boardWriter;
+		this.createDate = createDate;
+		this.count = count;
+		this.status = status;
+		this.amount = amount;
+		this.buyer = buyer;
+		this.saleYn = saleYn;
+		this.titleImg = titleImg;
+		this.address = address;
+	}
+
 	public Board(int boardNo, String boardTitle, String boardContent, String boardWriter, String createDate, int count,
 			String status, String saleYn) {
 		super();

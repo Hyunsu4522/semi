@@ -1,8 +1,8 @@
-/*body{
+body{
     width: 100%;
     min-width: 1200px;
     min-height: 100%;
-}*/
+}
 /* header */
 header {
     width: 100%;
@@ -127,7 +127,4 @@ header .gnb .search button {
 .contents{
     padding-top: 70px;
 }
-
-
-
 

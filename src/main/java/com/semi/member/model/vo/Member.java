@@ -11,9 +11,36 @@ public class Member {
 	private Date enrollDate;
 	private Date modifyDate;
 	private String status;
+	private String profileUrl;
 	
 	public Member() {}
+	
+	
 
+	public Member(String userId, String userPwd, String userName, String address) {
+		super();
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.address = address;
+	}
+
+
+
+	public Member(int userNo, String userId, String userPwd, String userName, String address, Date enrollDate,
+			Date modifyDate, String status, String profileUrl) {
+		super();
+		this.userNo = userNo;
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.address = address;
+		this.enrollDate = enrollDate;
+		this.modifyDate = modifyDate;
+		this.status = status;
+		this.profileUrl = profileUrl;
+	}
+	
 
 	public Member(int userNo, String userId, String userPwd, String userName, String address, Date enrollDate,
 			Date modifyDate, String status) {
@@ -27,7 +54,7 @@ public class Member {
 		this.modifyDate = modifyDate;
 		this.status = status;
 	}
-	
+
 	public Member(String userId, String userPwd, String userName, String address) {
 		super();
 		this.userId = userId;
@@ -101,10 +128,22 @@ public class Member {
 		this.status = status;
 	}
 
+
+	public String getProfileUrl() {
+		return profileUrl;
+	}
+
+	public void setProfileUrl(String profileUrl) {
+		this.profileUrl = profileUrl;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [userNo=" + userNo + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
 				+ ", address=" + address + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", status="
-				+ status + "]";
+				+ status + ", profileUrl=" + profileUrl + "]";
 	}
+	
+	
+
 }

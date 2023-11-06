@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import com.oreilly.servlet.MultipartRequest;
 import com.semi.member.model.vo.Member;
 
 
@@ -53,7 +54,7 @@ private Properties prop = new Properties();
 						rset.getDate("enroll_date"),
 						rset.getDate("modify_date"),
 						rset.getString("status")
-						);
+				);
 			}
 
 			
@@ -151,7 +152,8 @@ public Member selectMember(Connection conn, String userId) {
                 rset.getString("address"),
                 rset.getDate("enroll_date"),
                 rset.getDate("modify_date"),
-                rset.getString("status")
+                rset.getString("PROFILE_URL")
+
                 );
        }
 
@@ -191,7 +193,8 @@ public Member selectMember(Connection conn, String userId) {
                 rset.getString("address"),
                 rset.getDate("enroll_date"),
                 rset.getDate("modify_date"),
-                rset.getString("status")
+				rset.getString("status"),
+                rset.getString("PROFILE_URL")
                 );
        }
 
@@ -280,5 +283,73 @@ public Member selectMember(Connection conn, String userId) {
     }
     return result;
  }
+	public int insertMemberImage(Connection conn, int userNo, String filePath, MultipartRequest multiRequest ) {
+		 int result = 0;
+	      
+	      PreparedStatement pstmt = null;
+	      String sql = prop.getProperty("insertMemberImage");
+	      
+	         try {
+	               pstmt = conn.prepareStatement(sql);
+	              
+	               pstmt.setString(1, filePath + multiRequest.getFilesystemName("file"));
+	               pstmt.setInt(2, userNo);
+	               
+	               result = pstmt.executeUpdate();
+	            
+	         } catch (SQLException e) {
+	            e.printStackTrace();
+	          
+	         } finally {
+	            close(pstmt);
+	         }
+
+	     
+	         return result;
+	}
+	
+	
+	
+	 public Member UpdateImgMember(Connection conn, int userNo) {
+		    Member m = null;
+		    
+		    PreparedStatement pstmt = null;
+		    ResultSet rset = null;
+		    
+		    String sql = prop.getProperty("UpdateImgMember");
+		    
+
+		    try {
+		       pstmt = conn.prepareStatement(sql);
+		       pstmt.setInt(1, userNo);
+		       
+		       rset = pstmt.executeQuery();
+		       
+		       if (rset.next()) {
+		          m = new Member(
+		                rset.getInt("user_no"),
+		                rset.getString("user_id"),
+		                rset.getString("user_pwd"),
+		                rset.getString("user_name"),
+		                rset.getString("address"),
+		                rset.getDate("enroll_date"),
+		                rset.getDate("modify_date"),
+		                rset.getString("status"),
+		                rset.getString("PROFILE_URL")
+		                );
+		       }
+
+		       
+		    } catch (SQLException e) {
+
+		       e.printStackTrace();
+		    } finally {
+		       close(rset);
+		       close(pstmt);
+		    }
+		    
+		    return m;
+		 }
+ 
 	
 }

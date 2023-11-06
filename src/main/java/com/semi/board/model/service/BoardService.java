@@ -1,6 +1,6 @@
 package com.semi.board.model.service;
 
-
+import static com.semi.common.JDBCTemplate.*;
 import static com.semi.common.JDBCTemplate.close;
 import static com.semi.common.JDBCTemplate.commit;
 import static com.semi.common.JDBCTemplate.getConnection;
@@ -128,4 +128,27 @@ public class BoardService {
 		
 		return result;
 	} 
+
+	  public ArrayList<Board> ajaxSelectMyBoardList(int boardWriter){
+	      Connection conn = getConnection();
+	      
+	      ArrayList<Board> list = new BoardDao().ajaxSelectMyBoardList(conn, boardWriter);
+	      
+	      close(conn);
+
+	      return list;
+	  }
+	  
+	  
+	  public ArrayList<Board> ajaxSelectMyAllBoardList(int boardWriter){
+	      Connection conn = getConnection();
+	      
+	      ArrayList<Board> list = new BoardDao().ajaxSelectMyAllBoardList(conn, boardWriter);
+	      
+	      close(conn);
+
+	      return list;
+	  }
+	  
+
 }

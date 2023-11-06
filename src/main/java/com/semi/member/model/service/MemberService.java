@@ -8,6 +8,7 @@ import static com.semi.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 
+import com.oreilly.servlet.MultipartRequest;
 import com.semi.member.model.dao.MemberDao;
 import com.semi.member.model.vo.Member;
 
@@ -111,6 +112,23 @@ public class MemberService {
 	      
 	      return updateAdMem;
 	      
+	   }
+	   
+   
+	   public Member insertMemberImage(int userNo, String filePath, MultipartRequest multiRequest ) {
+		   Connection conn = getConnection();
+		   
+		   int result = new MemberDao().insertMemberImage(conn, userNo, filePath, multiRequest);
+		   
+		   Member updateMem = null;
+		   if(result > 0) {
+		         commit(conn);
+		         
+		         updateMem = new MemberDao().UpdateImgMember(conn, userNo);
+		      }
+		      close(conn);
+		      
+		      return updateMem;
 	   }
 	   
 	

@@ -13,6 +13,9 @@ import java.util.Properties;
 
 import com.semi.board.model.vo.Board;
 import com.semi.board.model.vo.Reply;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.semi.board.model.vo.Board;
 import com.semi.common.model.vo.Attachment;
 import com.semi.common.model.vo.PageInfo;
 
@@ -376,6 +379,112 @@ public class BoardDao{
 	      
 	   }
 	
+
+	public int insertMemberImage(Connection conn, int userNo, MultipartRequest multiRequest ) {
+		 int result = 0;
+	      
+	      PreparedStatement pstmt = null;
+	      String sql = prop.getProperty("insertMemberImage");
+	      
+	     
+	         try {
+	               pstmt = conn.prepareStatement(sql);
+	               pstmt.setString(1, multiRequest.getOriginalFileName("file"));
+	               pstmt.setString(2, multiRequest.getFilesystemName("key"));
+	               pstmt.setInt(4, userNo);
+	               
+	               result = pstmt.executeUpdate();
+	            
+	            
+	         } catch (SQLException e) {
+	            e.printStackTrace();
+	         } finally {
+	            close(pstmt);
+	         }
+	         
+	      return result;
+	}
+	
+	
+		
+
+	public ArrayList<Board> ajaxSelectMyBoardList(Connection conn, int boardWriter){
+	      Board b = null;
+	      ArrayList<Board> list = new ArrayList<>();
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      String sql = prop.getProperty("ajaxSelectMyBoardList");
+	      try {
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setInt(1, boardWriter);
+	         
+	         rset = pstmt.executeQuery();
+	         while(rset.next()) {
+	            b = new Board();
+	            b.setBoardNo(rset.getInt("board_no"));
+	            b.setBoardTitle(rset.getString("board_title"));
+	            b.setCreateDate(  rset.getString("create_date"));
+	            b.setCount(   rset.getInt("count"));
+	            b.setAmount(rset.getInt("amount"));
+	            b.setAddress(rset.getString("address"));
+	            b.setTitleImg(  rset.getString("TITLE_IMG"));
+	            
+	            list.add(b);
+	         }
+	         
+	         
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         close(rset);
+	         close(pstmt);
+	      }
+	      
+	      return list;
+	   }
+	
+	
+
+
+	
+	
+	public ArrayList<Board> ajaxSelectMyAllBoardList(Connection conn, int boardWriter){
+	      Board b = null;
+	      ArrayList<Board> list = new ArrayList<>();
+	      
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      
+	      String sql = prop.getProperty("ajaxSelectMyAllBoardList");
+	      try {
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setInt(1, boardWriter);
+	         
+	         rset = pstmt.executeQuery();
+	         while(rset.next()) {
+	            b = new Board();
+	            b.setBoardNo(rset.getInt("board_no"));
+	            b.setBoardTitle(rset.getString("board_title"));
+	            b.setCreateDate(  rset.getString("create_date"));
+	            b.setCount(   rset.getInt("count"));
+	            b.setAmount(rset.getInt("amount"));
+	            b.setAddress(rset.getString("address"));
+	            b.setTitleImg(  rset.getString("TITLE_IMG"));
+	            
+	            list.add(b);
+	         }
+	         
+	         
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         close(rset);
+	         close(pstmt);
+	      }
+	      
+	      return list;
+	}
+
 	public ArrayList<Reply> selectReplyList(Connection conn, int boardNO) {
 	      ArrayList<Reply> list = new ArrayList<>();
 	      
