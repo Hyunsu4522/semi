@@ -1,4 +1,3 @@
-
 package com.semi.board.model.dao;
 
 import static com.semi.common.JDBCTemplate.close;
@@ -11,6 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
+
+import com.semi.board.model.vo.Board;
+import com.semi.board.model.vo.Reply;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.semi.board.model.vo.Board;
@@ -377,6 +379,7 @@ public class BoardDao{
 	      
 	   }
 	
+
 	public int insertMemberImage(Connection conn, int userNo, MultipartRequest multiRequest ) {
 		 int result = 0;
 	      
@@ -403,13 +406,13 @@ public class BoardDao{
 	}
 	
 	
+		
+
 	public ArrayList<Board> ajaxSelectMyBoardList(Connection conn, int boardWriter){
 	      Board b = null;
 	      ArrayList<Board> list = new ArrayList<>();
-	      
 	      PreparedStatement pstmt = null;
 	      ResultSet rset = null;
-	      
 	      String sql = prop.getProperty("ajaxSelectMyBoardList");
 	      try {
 	         pstmt = conn.prepareStatement(sql);
@@ -438,8 +441,11 @@ public class BoardDao{
 	      }
 	      
 	      return list;
-	}
+	   }
 	
+	
+
+
 	
 	
 	public ArrayList<Board> ajaxSelectMyAllBoardList(Connection conn, int boardWriter){
@@ -478,5 +484,62 @@ public class BoardDao{
 	      
 	      return list;
 	}
+
+	public ArrayList<Reply> selectReplyList(Connection conn, int boardNO) {
+	      ArrayList<Reply> list = new ArrayList<>();
+	      
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      
+	      String sql = prop.getProperty("selectReplyList");
+	      
+	      try {
+	         pstmt = conn.prepareStatement(sql);
+	         
+	         pstmt.setInt(1, boardNO);
+	        
+	         rset = pstmt.executeQuery();
+	         
+	         while(rset.next()) {
+	        	list.add(new Reply(
+	        			 rset.getInt("reply_no"),
+	        			 rset.getString("reply_content"),
+	        			 rset.getString("user_id"),
+	        			 rset.getString("create_Date")
+	        			));
+	         }
+	         
+	         
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         close(rset);
+	         close(pstmt);
+	      }
+	      
+	      return list;
+	   }
 	
+	public int insertReply(Connection conn,Reply r) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertReply");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, r.getReplyContent());
+			pstmt.setInt(2, r.getRefBoardNo());
+			pstmt.setInt(3, Integer.parseInt(r.getReplyWriter()));
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 }

@@ -41,8 +41,6 @@ public class Member {
 		this.profileUrl = profileUrl;
 	}
 	
-	
-	
 
 	public Member(int userNo, String userId, String userPwd, String userName, String address, Date enrollDate,
 			Date modifyDate, String status) {
@@ -56,6 +54,15 @@ public class Member {
 		this.modifyDate = modifyDate;
 		this.status = status;
 	}
+
+	public Member(String userId, String userPwd, String userName, String address) {
+		super();
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.address = address;
+	}
+
 
 	public int getUserNo() {
 		return userNo;
@@ -121,6 +128,7 @@ public class Member {
 		this.status = status;
 	}
 
+
 	public String getProfileUrl() {
 		return profileUrl;
 	}
@@ -137,8 +145,5 @@ public class Member {
 	}
 	
 	
-
-	
-
 
 }

@@ -1,14 +1,17 @@
-
 package com.semi.board.model.service;
 
-
 import static com.semi.common.JDBCTemplate.*;
+import static com.semi.common.JDBCTemplate.close;
+import static com.semi.common.JDBCTemplate.commit;
+import static com.semi.common.JDBCTemplate.getConnection;
+import static com.semi.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.semi.board.model.dao.BoardDao;
 import com.semi.board.model.vo.Board;
+import com.semi.board.model.vo.Reply;
 import com.semi.common.model.vo.Attachment;
 import com.semi.common.model.vo.PageInfo;
 
@@ -103,6 +106,29 @@ public class BoardService {
 	      return boardListCount;
 	   }
 	  
+	 public ArrayList<Reply> selectReplyList(int boardNo){
+		 Connection conn = getConnection();
+		 
+		 ArrayList<Reply> list = new BoardDao().selectReplyList(conn, boardNo);
+		 close(conn);
+		 
+		 return list;
+	 }
+	 public int insertReply(Reply r) {
+		Connection conn = getConnection();
+		int result = new BoardDao().insertReply(conn, r);
+		
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	} 
+
 	  public ArrayList<Board> ajaxSelectMyBoardList(int boardWriter){
 	      Connection conn = getConnection();
 	      
@@ -124,5 +150,5 @@ public class BoardService {
 	      return list;
 	  }
 	  
-	   
+
 }

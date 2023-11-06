@@ -51,7 +51,8 @@
                     </div>
                     <% } else { %>
 		            <!-- case2. 로그인 후 -->
-		            <div>
+
+		            <div class="loginafter">
 		            	<b><%=loginUser.getUserName()%></b>님</a>
 		            	<a href="<%=contextPath %>/myPage.me">마이페이지</a>
 		            </div>
@@ -67,7 +68,7 @@
     </header>
     <!--// header  -->   
 </body>
-=======
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.semi.member.model.vo.Member"%>
 <%
@@ -137,5 +138,4 @@
     </header>
     <!--// header  -->   
 </body>
->>>>>>> a082656bf22164157661c3a1e7aa0936bb64e893
 </html>

@@ -818,6 +818,7 @@ button:disabled {
 }
 
 .myPage-section4{
+>>>>>>> c4cb38452db5989a632ea28fdd174a160440b051
 	flex-direction: column;
     border-top: 1px solid rgb(211, 208, 208);
     padding: 30px 0;
@@ -864,6 +865,11 @@ table.update  tbody tr td input{
  
 }
 </style>
+<!-- 231105 박수현 jquery 추가 -->
+<!-- jquery 3.7.1 -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<!--// 231105 박수현 jquery 추가 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -1044,7 +1050,7 @@ table.update  tbody tr td input{
           </div>
 		
 		<div class="myPage-section4">
-		
+			
 		 </div>
 		<script>
            function listinit(){
@@ -1225,6 +1231,4 @@ table.update  tbody tr td input{
 </body>
 
 
-
->>>>>>> a082656bf22164157661c3a1e7aa0936bb64e893
 </html>

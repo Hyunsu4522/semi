@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.semi.board.controller;
 
 import java.io.IOException;
@@ -122,6 +121,8 @@ public class PurchaseBoardController extends HttpServlet {
 	}
 
 }
+<<<<<<< HEAD
+=======
 =======
 package com.semi.board.controller;
 
@@ -247,3 +248,4 @@ public class PurchaseBoardController extends HttpServlet {
 
 }
 >>>>>>> a082656bf22164157661c3a1e7aa0936bb64e893
+>>>>>>> c4cb38452db5989a632ea28fdd174a160440b051

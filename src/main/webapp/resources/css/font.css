@@ -35,6 +35,8 @@
         src: url(fonts/NotoSansKR-Bold.woff2) format('woff2'),
         url(fonts/NotoSansKR-Bold.woff) format('woff'),
         url(fonts/NotoSansKR-Bold.otf) format('opentype');
+<<<<<<< HEAD
+=======
 =======
 @import url(//cdn.jsdelivr.net/font-nanum/1.0/nanumgothic/nanumgothic.css);
 @import url(//cdn.jsdelivr.net/font-nanum/1.0/nanumbarungothic/nanumbarungothic.css);
@@ -74,4 +76,5 @@
         url(fonts/NotoSansKR-Bold.woff) format('woff'),
         url(fonts/NotoSansKR-Bold.otf) format('opentype');
 >>>>>>> a082656bf22164157661c3a1e7aa0936bb64e893
+>>>>>>> c4cb38452db5989a632ea28fdd174a160440b051
     }

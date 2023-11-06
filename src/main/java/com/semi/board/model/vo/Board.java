@@ -1,4 +1,3 @@
-
 package com.semi.board.model.vo;
 
 public class Board {
@@ -10,10 +9,9 @@ public class Board {
 	private String createDate;
 	private int count;
 	private String status;
-	private int amount;
+	private String saleYn;
 	private String buyer;
 	private String saleYn;
-	
 	private String titleImg;
 	private String address;
 	
@@ -35,9 +33,6 @@ public class Board {
 	}
 
 	public Board() {}
-	
-	
-	
 	
 	public String getBuyer() {
 		return buyer;

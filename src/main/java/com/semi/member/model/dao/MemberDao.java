@@ -54,8 +54,7 @@ private Properties prop = new Properties();
 						rset.getDate("enroll_date"),
 						rset.getDate("modify_date"),
 						rset.getString("status")
-						
-						);
+				);
 			}
 
 			
@@ -153,9 +152,8 @@ public Member selectMember(Connection conn, String userId) {
                 rset.getString("address"),
                 rset.getDate("enroll_date"),
                 rset.getDate("modify_date"),
-                rset.getString("status"),
                 rset.getString("PROFILE_URL")
-                
+
                 );
        }
 
@@ -195,7 +193,7 @@ public Member selectMember(Connection conn, String userId) {
                 rset.getString("address"),
                 rset.getDate("enroll_date"),
                 rset.getDate("modify_date"),
-                rset.getString("status"),
+				rset.getString("status"),
                 rset.getString("PROFILE_URL")
                 );
        }
@@ -285,7 +283,6 @@ public Member selectMember(Connection conn, String userId) {
     }
     return result;
  }
- 
 	public int insertMemberImage(Connection conn, int userNo, String filePath, MultipartRequest multiRequest ) {
 		 int result = 0;
 	      
@@ -353,7 +350,6 @@ public Member selectMember(Connection conn, String userId) {
 		    
 		    return m;
 		 }
- 
  
 	
 }
