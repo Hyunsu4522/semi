@@ -146,4 +146,7 @@ $RECYCLE.BIN/
 .classpath
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,java,eclipse,visualstudiocode
+<<<<<<< HEAD
 /build/
+=======
+>>>>>>> a082656bf22164157661c3a1e7aa0936bb64e893

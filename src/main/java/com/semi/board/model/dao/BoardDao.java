@@ -1,3 +1,4 @@
+
 package com.semi.board.model.dao;
 
 import static com.semi.common.JDBCTemplate.close;
